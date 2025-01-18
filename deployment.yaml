@@ -15,7 +15,7 @@ spec:
  spec:
  containers:
  - name: healthcare
- image: frost113/hraltcare-buvan3
+ image: frost113/hraltcare-buvan3:3
  ports:
  - containerPort: 8082
 ---
