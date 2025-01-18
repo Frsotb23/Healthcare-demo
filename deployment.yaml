@@ -1,33 +1,34 @@
-kind: Deployment
 apiVersion: apps/v1
-metadata:
+kind: Deployment
+metadata: 
  name: healthcare
 spec:
  replicas: 1
  selector:
- matchLabels:
- name: healthcare
+  matchLabels:
+  app: healthcare
  template:
- metadata:
- name: testp1
- labels:
- name: healthcare
- spec:
- containers:
- - name: simple-container
- image: frost113/hraltcare-buvan3:3
- ports:
- - containerPort: 8082
----
-kind: Service
-apiVersion: v1
-metadata:
- name: healthcare
+ metadate:
+ lables:
+ app: healthcare
 spec:
- ports:
- - port: 80
- targetPort: 8082 
- nodePort: 30007
+containers:
+-name: healthcare
+image: frost113/hraltcare-buvan3:3
+ports:
+ -containersPort: 8082
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+ name: healtcare
+ spec:
  selector:
- name: healthcare 
- type: NodePort
+ app: healthcare
+ type: Nodeport
+ ports: 
+ -port: 80
+ targetPort: 8082
+ nodePort: 30007
+
